@@ -1,13 +1,15 @@
-FROM python:3.8-slim-buster
+FROM python:3.8-slim-buster 
 
-COPY ./requirements.txt /app/requirements.txt
+WORKDIR /code 
 
-WORKDIR /app
+RUN python -m pip install --upgrade pip
+COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-COPY . /app
 
-ENTRYPOINT [ "python" ]
 
-CMD [ "app.py" ]
+COPY . /code 
+
+ 
+CMD ["python" , "app.py"]
